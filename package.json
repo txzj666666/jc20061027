@@ -1,0 +1,31 @@
+{
+  "name": "face-emotion-music",
+  "version": "1.0.0",
+  "private": true,
+  "description": "基于人脸情绪识别的歌曲推荐系统（Vue3 + Vite + face-api.js，全部推理在浏览器本地完成）",
+  "type": "module",
+  "scripts": {
+    "setup": "node scripts/setup-assets.mjs && node scripts/gen-demo-music.mjs",
+    "postinstall": "node scripts/setup-assets.mjs",
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "music": "node scripts/gen-demo-music.mjs"
+  },
+  "keywords": [
+    "vue3",
+    "face-api.js",
+    "emotion-recognition",
+    "music-recommendation"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^6.0.10",
+    "vite": "^7.3.7",
+    "vue": "^3.5.44"
+  },
+  "dependencies": {
+    "@vladmandic/face-api": "^1.7.15"
+  }
+}

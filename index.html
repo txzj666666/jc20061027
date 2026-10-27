@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="dark" />
+    <title>FaceTunes · 人脸情绪识别歌曲推荐系统</title>
+    <meta
+      name="description"
+      content="HTML5 + CSS3 + JavaScript + Vue3 实现的人脸情绪识别歌曲推荐系统，支持图片/视频/摄像头/拍照四种采集方式，情绪识别全程在浏览器本地运行。"
+    />
+  </head>
+  <body>
+    <div id="app"></div>
+
+    <!--
+      face-api.js（= TensorFlow.js 的封装）以经典 <script> 方式加载，
+      加载后挂到 window.faceapi 全局，供 src/core/faceEngine.js 动态取用。
+
+      这样做的原因：face-api 的 UMD/EOM 产物内联打包了整套 tfjs，
+      交给 Vite 预构建容易和浏览器后端探测（WebGL/WASM）产生冲突，
+      直接 script 标签是最稳、也最容易离线部署的方式。
+
+      文件来源：node_modules/@vladmandic/face-api/dist/face-api.js
+      由 `npm run setup` 复制到 public/face-api/face-api.js
+      如果本地文件缺失，会自动回退到 jsDelivr CDN。
+    -->
+    <script src="/face-api/face-api.js" onerror="window.__FACE_API_LOCAL_FAIL__=true"></script>
+    <script>
+      // 本地文件不存在时（未执行 npm run setup）回退 CDN，保证首次体验不白屏
+      if (window.__FACE_API_LOCAL_FAIL__) {
+        document.write(
+          '<script src="https://cdn.jsdelivr.net/npm/@vladmandic/face-api@1.7.15/dist/face-api.js"><\/script>'
+        )
+      }
+    </script>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

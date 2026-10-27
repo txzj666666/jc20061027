@@ -1,0 +1,14 @@
+# Logs
+node_modules/
+dist/
+*.log
+.vite/
+
+# 由 npm run setup / npm run music 生成的本地资源（体积较大，可按需保留）
+public/models/
+public/face-api/
+public/music/*.wav
+
+# 系统
+.DS_Store
+Thumbs.db
