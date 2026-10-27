@@ -1,0 +1,380 @@
+{
+  "__doc": "本地歌曲库清单。把 mp3 放进 public/music/ 后，在 tracks 数组里新增一条即可被推荐算法检索。",
+  "fieldDoc": {
+    "id": "唯一 ID",
+    "file": "相对于 public/music/ 的文件名；也可直接填完整 URL（http 开头则不拼接前缀）",
+    "title": "歌名",
+    "artist": "歌手",
+    "genre": "曲风标签数组，会参与标签匹配打分",
+    "bpm": "每分钟节拍，用于能量（arousal）匹配",
+    "valence": "效价 -1(不愉悦)~1(愉悦)，对应 Russell 情绪环状模型横轴",
+    "arousal": "唤醒度 -1(平静)~1(兴奋)，对应环状模型纵轴",
+    "mood": "该曲在 7 类基础情绪上的隶属度向量（0~1，无需严格归一）",
+    "rating": "主观热度 0~1，对应流行度权重",
+    "reason": "为什么这首歌适合该情绪，会显示在前端推荐理由里"
+  },
+  "tracks": [
+    {
+      "id": "local-happy-01",
+      "file": "happy-01.wav",
+      "title": "晨光漫步",
+      "artist": "FaceTunes Demo",
+      "album": "情绪演示音源 · 开心",
+      "genre": [
+        "轻快流行",
+        "pop",
+        "feel-good"
+      ],
+      "bpm": 118,
+      "duration": 13.8,
+      "valence": 0.78,
+      "arousal": 0.58,
+      "bpmEnergy": 0.72,
+      "mood": {
+        "happy": 0.86,
+        "surprised": 0.08,
+        "neutral": 0.06
+      },
+      "rating": 0.5860000000000001,
+      "source": "local",
+      "cover": "",
+      "reason": "大调 I–V–vi–IV + 118BPM 跳跃琶音，对应开心的高愉悦度、中高唤醒"
+    },
+    {
+      "id": "local-happy-02",
+      "file": "happy-02.wav",
+      "title": "柠檬汽水",
+      "artist": "FaceTunes Demo",
+      "album": "情绪演示音源 · 开心",
+      "genre": [
+        "放克",
+        "funk",
+        "舞曲"
+      ],
+      "bpm": 126,
+      "duration": 13.63,
+      "valence": 0.72,
+      "arousal": 0.72,
+      "bpmEnergy": 0.85,
+      "mood": {
+        "happy": 0.8,
+        "surprised": 0.12,
+        "neutral": 0.08
+      },
+      "rating": 0.5650000000000001,
+      "source": "local",
+      "cover": "",
+      "reason": "属七和弦 + 放克切分 + 126BPM，把开心的能量感推到更高"
+    },
+    {
+      "id": "local-sad-01",
+      "file": "sad-01.wav",
+      "title": "雨夜车窗",
+      "artist": "FaceTunes Demo",
+      "album": "情绪演示音源 · 悲伤",
+      "genre": [
+        "抒情",
+        "ballad",
+        "钢琴"
+      ],
+      "bpm": 64,
+      "duration": 20.95,
+      "valence": -0.72,
+      "arousal": -0.45,
+      "bpmEnergy": 0.2,
+      "mood": {
+        "sad": 0.88,
+        "fearful": 0.06,
+        "neutral": 0.06
+      },
+      "rating": 0.55,
+      "source": "local",
+      "cover": "",
+      "reason": "小调慢速 + 长释放包络 + 大延迟混响，对应悲伤的低愉悦、低唤醒"
+    },
+    {
+      "id": "local-sad-02",
+      "file": "sad-02.wav",
+      "title": "旧照片",
+      "artist": "FaceTunes Demo",
+      "album": "情绪演示音源 · 悲伤",
+      "genre": [
+        "民谣",
+        " acoustic",
+        "治愈"
+      ],
+      "bpm": 72,
+      "duration": 18.27,
+      "valence": -0.55,
+      "arousal": -0.25,
+      "bpmEnergy": 0.3,
+      "mood": {
+        "sad": 0.74,
+        "neutral": 0.2,
+        "disgusted": 0.06
+      },
+      "rating": 0.5800000000000001,
+      "source": "local",
+      "cover": "",
+      "reason": "民谣指型分解和弦，略带暖意的悲伤（怀旧型）"
+    },
+    {
+      "id": "local-angry-01",
+      "file": "angry-01.wav",
+      "title": "混凝土裂缝",
+      "artist": "FaceTunes Demo",
+      "album": "情绪演示音源 · 愤怒",
+      "genre": [
+        "摇滚",
+        "rock",
+        "金属"
+      ],
+      "bpm": 142,
+      "duration": 11.74,
+      "valence": -0.62,
+      "arousal": 0.86,
+      "bpmEnergy": 0.95,
+      "mood": {
+        "angry": 0.85,
+        "surprised": 0.1,
+        "disgusted": 0.05
+      },
+      "rating": 0.595,
+      "source": "local",
+      "cover": "",
+      "reason": "失真锯齿波 + 142BPM 强推进 + 低音重复，对应愤怒的高唤醒负效价"
+    },
+    {
+      "id": "local-angry-02",
+      "file": "angry-02.wav",
+      "title": "反击节拍",
+      "artist": "FaceTunes Demo",
+      "album": "情绪演示音源 · 愤怒",
+      "genre": [
+        "嘻哈",
+        "hiphop",
+        "电子"
+      ],
+      "bpm": 150,
+      "duration": 11.2,
+      "valence": -0.5,
+      "arousal": 0.9,
+      "bpmEnergy": 0.98,
+      "mood": {
+        "angry": 0.78,
+        "disgusted": 0.12,
+        "surprised": 0.1
+      },
+      "rating": 0.604,
+      "source": "local",
+      "cover": "",
+      "reason": "重低音 riff + 高 BPM，用于把愤怒导向「宣泄/发力」而不是压抑"
+    },
+    {
+      "id": "local-fearful-01",
+      "file": "fearful-01.wav",
+      "title": "走廊尽头",
+      "artist": "FaceTunes Demo",
+      "album": "情绪演示音源 · 恐惧",
+      "genre": [
+        "氛围",
+        "ambient",
+        "电影原声"
+      ],
+      "bpm": 84,
+      "duration": 15.89,
+      "valence": -0.6,
+      "arousal": 0.55,
+      "bpmEnergy": 0.45,
+      "mood": {
+        "fearful": 0.85,
+        "surprised": 0.1,
+        "sad": 0.05
+      },
+      "rating": 0.5650000000000001,
+      "source": "local",
+      "cover": "",
+      "reason": "三全音 + 极长混响 + 持续低音踏板，对应恐惧的中高唤醒、低愉悦"
+    },
+    {
+      "id": "local-fearful-02",
+      "file": "fearful-02.wav",
+      "title": "心跳频率",
+      "artist": "FaceTunes Demo",
+      "album": "情绪演示音源 · 恐惧",
+      "genre": [
+        "后摇",
+        "post-rock",
+        "悬疑"
+      ],
+      "bpm": 96,
+      "duration": 16.6,
+      "valence": -0.52,
+      "arousal": 0.68,
+      "bpmEnergy": 0.6,
+      "mood": {
+        "fearful": 0.72,
+        "surprised": 0.2,
+        "angry": 0.08
+      },
+      "rating": 0.61,
+      "source": "local",
+      "cover": "",
+      "reason": "固定低音上的半音游移 + 类心跳底鼓，营造紧张感但保留推进力"
+    },
+    {
+      "id": "local-surprised-01",
+      "file": "surprised-01.wav",
+      "title": "反转开场",
+      "artist": "FaceTunes Demo",
+      "album": "情绪演示音源 · 惊讶",
+      "genre": [
+        "古典",
+        "classical",
+        "弦乐"
+      ],
+      "bpm": 132,
+      "duration": 12.51,
+      "valence": 0.18,
+      "arousal": 0.9,
+      "bpmEnergy": 0.88,
+      "mood": {
+        "surprised": 0.85,
+        "happy": 0.1,
+        "fearful": 0.05
+      },
+      "rating": 0.5740000000000001,
+      "source": "local",
+      "cover": "",
+      "reason": "增三和弦突转 + 132BPM 快速琶音，覆盖惊讶的高唤醒、效价中性"
+    },
+    {
+      "id": "local-surprised-02",
+      "file": "surprised-02.wav",
+      "title": "万花筒",
+      "artist": "FaceTunes Demo",
+      "album": "情绪演示音源 · 惊讶",
+      "genre": [
+        "爵士",
+        "jazz",
+        "实验"
+      ],
+      "bpm": 120,
+      "duration": 14.2,
+      "valence": 0.25,
+      "arousal": 0.7,
+      "bpmEnergy": 0.75,
+      "mood": {
+        "surprised": 0.7,
+        "happy": 0.2,
+        "neutral": 0.1
+      },
+      "rating": 0.5950000000000001,
+      "source": "local",
+      "cover": "",
+      "reason": "爵士延伸和弦（9/13）不断换位，制造\"下一步猜不到\"的新鲜感"
+    },
+    {
+      "id": "local-disgusted-01",
+      "file": "disgusted-01.wav",
+      "title": "过期果酱",
+      "artist": "FaceTunes Demo",
+      "album": "情绪演示音源 · 厌恶",
+      "genre": [
+        "独立",
+        "indie",
+        "另类"
+      ],
+      "bpm": 100,
+      "duration": 13.6,
+      "valence": -0.58,
+      "arousal": 0.35,
+      "bpmEnergy": 0.5,
+      "mood": {
+        "disgusted": 0.8,
+        "angry": 0.1,
+        "neutral": 0.1
+      },
+      "rating": 0.5800000000000001,
+      "source": "local",
+      "cover": "",
+      "reason": "弗里吉亚 b2 音程的摩擦感 + 失谐主音，表达排斥/不适而非攻击"
+    },
+    {
+      "id": "local-disgusted-02",
+      "file": "disgusted-02.wav",
+      "title": "倒掉重做",
+      "artist": "FaceTunes Demo",
+      "album": "情绪演示音源 · 厌恶",
+      "genre": [
+        "电子",
+        "electronic",
+        "治愈"
+      ],
+      "bpm": 108,
+      "duration": 12.71,
+      "valence": -0.3,
+      "arousal": 0.45,
+      "bpmEnergy": 0.6,
+      "mood": {
+        "disgusted": 0.6,
+        "neutral": 0.3,
+        "happy": 0.1
+      },
+      "rating": 0.61,
+      "source": "local",
+      "cover": "",
+      "reason": "轻微不协和后解决到干净和弦 —— 厌恶情绪更适合\"翻篇/清爽\"型推荐"
+    },
+    {
+      "id": "local-neutral-01",
+      "file": "neutral-01.wav",
+      "title": "白噪音午后",
+      "artist": "FaceTunes Demo",
+      "album": "情绪演示音源 · 中性",
+      "genre": [
+        "Lo-Fi",
+        "轻音乐",
+        "学习"
+      ],
+      "bpm": 78,
+      "duration": 20.06,
+      "valence": 0.05,
+      "arousal": -0.1,
+      "bpmEnergy": 0.35,
+      "mood": {
+        "neutral": 0.9,
+        "happy": 0.1
+      },
+      "rating": 0.5950000000000001,
+      "source": "local",
+      "cover": "",
+      "reason": "七和弦 + 低唤醒节奏，中性状态默认走\"不打扰\"的 Lo-Fi 背景乐"
+    },
+    {
+      "id": "local-neutral-02",
+      "file": "neutral-02.wav",
+      "title": "通勤地铁",
+      "artist": "FaceTunes Demo",
+      "album": "情绪演示音源 · 中性",
+      "genre": [
+        "流行",
+        "pop",
+        "city"
+      ],
+      "bpm": 96,
+      "duration": 17.2,
+      "valence": 0.15,
+      "arousal": 0.2,
+      "bpmEnergy": 0.55,
+      "mood": {
+        "neutral": 0.75,
+        "happy": 0.25
+      },
+      "rating": 0.5950000000000001,
+      "source": "local",
+      "cover": "",
+      "reason": "平稳中速流行进行，中性状态下提供轻度愉悦而不改变情绪基线"
+    }
+  ]
+}

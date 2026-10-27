@@ -1,0 +1,19 @@
+# 依赖与构建产物
+node_modules/
+dist/
+*.log
+.vite/
+
+# 演示音源（9MB，可用 `npm run music` 随时重新合成；自己的 mp3 请自行决定是否入库）
+public/music/*.wav
+
+# 编辑器 / 系统
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# 说明：public/models/ 与 public/face-api/ 已随仓库分发（合计约 2.2MB），
+# 这样 clone 下来不执行 npm run setup 也能直接识别；如需瘦身可把这两行取消注释：
+# public/models/
+# public/face-api/
