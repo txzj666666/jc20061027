@@ -2,6 +2,8 @@
 
 > HTML5 + CSS3 + JavaScript (ESM) + **Vue 3** + Vite + face-api.js
 > 人脸检测与情绪识别 **100% 在浏览器本地运行**，摄像头画面/照片像素不上传任何服务器。
+>
+> 在线演示：<https://txzj666666.github.io/jc20061027/>
 
 ---
 
@@ -89,6 +91,31 @@ npm run preview    # 用静态服务器预览 dist/
 > 上表置信度为 CPU 后端单帧实测值（288×344 输入、`inputSize=320`）。第 7 类「中性」请用你自己的照片或摄像头，
 > 因为合成图的情绪都做得比较夸张，中性脸反而不容易稳定命中。
 > 想扩充：把新图放进 `public/samples/`，在 `src/components/CapturePanel.vue` 的 `SAMPLES` 数组里加一行即可。
+
+---
+
+## 2.5 部署到 GitHub Pages
+
+仓库已带 `.github/workflows/deploy.yml`：push 到 `main` 就自动 `npm ci → npm run music → npm run build`
+并把 `dist/` 发布为 Pages。**首次需要手动开启一次**：
+
+> 仓库页 → **Settings** → 左侧 **Pages** → **Build and deployment → Source** 选 **GitHub Actions** → 保存。
+> 之后回到 Actions 页面看 "部署到 GitHub Pages" 工作流跑完（约 1~2 分钟），即可访问
+> `https://<你的用户名>.github.io/<仓库名>/`。
+
+两个易踩的坑（本项目已处理）：
+
+1. **子路径 404 导致整页黑屏**：项目型 Pages 挂在 `/仓库名/` 下，若 `base` 写成 `/`，
+   `index.html` 会去根目录取 `/assets/xxx.js` → 全部 404 → Vue 不挂载，只剩深色背景。
+   本项目用**相对 base**（`vite.config.js` 里 `base: './'`），产物里是 `./assets/...`，
+   放根目录或任意子目录都能跑；代码里的 `models/`、`music/`、`samples/` 路径统一走
+   `import.meta.env.BASE_URL` 拼接，同样自动适配。
+2. **Pages 的 Source 选成 "Deploy from a branch"**：那样直接把仓库源码当静态站发布，
+   浏览器拿到的是 `<script src="/src/main.js">` 这种未编译入口，必然白/黑屏。
+   正确做法是 Source = GitHub Actions（走构建产物），或本地 `npm run build` 后把 `dist/` 单独发布。
+
+HTTPS 环境下 `getUserMedia` 可用，所以 Pages 上**实时摄像头与拍照识别都能正常工作**；
+在线音乐源默认走带 `Access-Control-Allow-Origin: *` 的公共接口，无需后端。
 
 ---
 

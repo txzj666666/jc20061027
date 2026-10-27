@@ -10,7 +10,14 @@ import vue from '@vitejs/plugin-vue'
  *    浏览器直连第三方音乐接口常被 CORS 拦截，dev 环境可改走本地代理。
  *    生产部署时把同样的规则配到 Nginx / CDN 即可。
  */
+/**
+ * base 用相对路径 './'：构建产物里的资源引用变成 ./assets/xxx.js，
+ * 这样同一份 dist 既能放在域名根目录，也能放在 GitHub Pages 的项目子路径
+ * https://<user>.github.io/<repo>/ 下，不需要为每个仓库改配置。
+ * 需要绝对路径时用 VITE_BASE 覆盖，例如 VITE_BASE=/jc20061027/ npm run build
+ */
 export default defineConfig({
+  base: process.env.VITE_BASE || './',
   plugins: [vue()],
   server: {
     host: '127.0.0.1',

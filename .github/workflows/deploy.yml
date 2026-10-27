@@ -1,0 +1,54 @@
+# GitHub Pages 自动构建部署
+# ------------------------------------------------------------------
+# 触发：push 到 main 分支即自动 npm install → vite build → 发布 dist/
+# 首次使用需在仓库 Settings → Pages → Build and deployment → Source
+# 选择 "GitHub Actions"（本文件所在的工作流会被自动识别）。
+#
+# 资源路径用相对 base（vite.config.js 里 base: './'），
+# 因此产物可直接跑在 https://<user>.github.io/<repo>/ 子路径下。
+name: 部署到 GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+      - name: 安装依赖
+        run: npm ci
+      # postinstall 会把 face-api 运行时与模型权重从 node_modules 复制到 public/
+      - name: 生成演示音源（本地曲库）
+        run: npm run music
+      - name: 构建
+        run: npm run build
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.out.outputs.page_url }}
+    steps:
+      - id: out
+        uses: actions/deploy-pages@v4
